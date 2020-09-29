@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+<string name="alert_box">AlertBox</string>
+     <string name="remove">click button</string>
+    <string name="dialogMessage">Are you sure want to remove all the favourites?</string>
+
+</resources>
