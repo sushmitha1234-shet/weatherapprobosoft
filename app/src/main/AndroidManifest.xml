@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".NoSearchActivity" />
         <activity android:name=".NoFavouriteActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".ui.HomeActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

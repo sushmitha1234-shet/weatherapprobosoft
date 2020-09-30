@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 import android.Manifest
 import android.app.Activity
@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import com.example.myapplication.FavouriteActivity
+import com.example.myapplication.R
+import com.example.myapplication.SearchActivity
 import com.example.myapplication.auth.ViewmodelFactory
 import com.example.myapplication.auth.WeatherViewModel
 import com.example.myapplication.databinding.ActivityMain2Binding
@@ -42,21 +45,25 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main2)
-        val myweatherapi = MyWeatherApi()
-        val repository=WeatherRepository(myweatherapi)
+
+
+        val api = MyWeatherApi()
+        val repository=WeatherRepository(api)
         val factory=ViewmodelFactory(repository)
         weatherViewModel= ViewModelProviders.of(this,factory).get(WeatherViewModel::class.java)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main2)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_main2
+        )
         binding!!.viewmodel=weatherViewModel
 
-        //val binding = DataBindingUtil.setContentView<ActivityMain2Binding>(this,R.layout.activity_main2)
-        //val viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
-       // binding.lifecycleOwner = this
-        //binding!!.viewmodel = viewModel
 
 
 
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar,
+            R.string.open,
+            R.string.close
+        )
 
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -68,9 +75,12 @@ class HomeActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.mitem1 ->startActivity(Intent(this,HomeActivity::class.java))
-                R.id.mitem2 -> startActivity(Intent(this,FavouriteActivity::class.java))
-                R.id.mitem3 -> startActivity(Intent(this,SearchActivity::class.java))
+                R.id.mitem1 ->startActivity(Intent(this,
+                    HomeActivity::class.java))
+                R.id.mitem2 -> startActivity(Intent(this,
+                    FavouriteActivity::class.java))
+                R.id.mitem3 -> startActivity(Intent(this,
+                    SearchActivity::class.java))
             }
             true
         }
@@ -123,21 +133,21 @@ class HomeActivity : AppCompatActivity() {
             val id = it.id
             val desc = it.description
             if (id < 300) {
-                tv_status.text = "Thunderstorm"
+                discription.text = "Thunderstorm"
             }
             else if (id > 300 && id < 600) {
-               tv_status.text = "Rain"
+               discription.text = "Rain"
             } else if (id > 600 && id <= 800) {
-                tv_status.text = "Mostly Sunny"
+                discription.text = "Mostly Sunny"
             } else if (id > 800) {
                 if (desc == "few clouds") {
-                    tv_status.text = "Partly Cloudy"
+                    discription.text = "Partly Cloudy"
                 } else {
-                   tv_status.text = "Mostly Cloudy"
+                   discription.text = "Mostly Cloudy"
                 }
             }
 
-            val text = tv_status.text
+            val text = discription.text
             if (text == "Thunderstorm") {
                 iv_weathericon.setBackgroundResource(R.drawable.icon_thunderstorm_big)
             } else if (text == "Rain") {
@@ -157,7 +167,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when(item.itemId) {
-        R.id.homesearchbar-> {
+        R.id.homesearchbar -> {
             val intent = PlaceAutocomplete.IntentBuilder()
                 .accessToken("pk.eyJ1Ijoic3VzaG1pdGhhc2hldDEyMyIsImEiOiJja2ZjYjNndHkxZTZjMnpxc2k4bndnaTJ2In0.YtNvTh7-VtuL_0lJ1X-5Kg")
                 .placeOptions(PlaceOptions.builder().build(PlaceOptions.MODE_CARDS))

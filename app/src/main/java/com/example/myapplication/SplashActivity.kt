@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.myapplication.ui.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
     private val Splash_Timeout:Long=3000
@@ -14,7 +15,8 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
 
 
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this,
+                HomeActivity::class.java))
 
 
             finish()

@@ -15,4 +15,3 @@ class WeatherRepository(private val Api : MyWeatherApi) : WeatherResponseConvert
 
 
 
-
